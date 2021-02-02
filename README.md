@@ -61,3 +61,8 @@ All work during this course will be tested against our [Best Practices for JavaS
 <!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
 
 <!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
+
+
+### Teaser
+
+

@@ -1,30 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-section {
+:root {
+    --backgroundColor: #1a1f2b;
+    --red: #f63f63;
+    --gray: #F4F4F4;
+    --wit: #fff;
+}
+
+.swiper-section {
     position: relative;
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #2196f3;
+    background: var(--backgroundColor);
     overflow: hidden;
 }
 
-.swiper-container {
-    width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
+.results {
+    position: absolute;
+    color: var(--wit);
+    top: 15vh;
+}
+
+.results h3 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.1em;
 }
 
 
 
-.swiper-slide {
+
+
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right {
+    background-image: none;
+}
+
+  
+  .player {
+    position: relative;
+    background: #f1f3f4;
+    box-shadow: 0 50px 80px rgba(0, 0, 0, 0.25);
+  }
+  
+  .player .imgBx {
+    position: relative;
+    width: 100%;
+    height: 350px;
+  }
+  
+  .player .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .player audio {
+    width: 100%;
+    outline: none;
+    position: absolute;
+    bottom: 0;
+    background-color: aqua;
+  }
+  
+  .swiper-container {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+.text {
+    color: white;
+    position: absolute;
+    text-align: center;
+}
+
+
+  .swiper-slide {
     background-position: center;
     background-size: cover;
     width: 320px;
@@ -32,69 +99,47 @@ section {
     box-shadow: 0 15px 50px rgba(0,0,0,0.2);
     filter: blur(4px);
     border-radius: 10px;
-}
-
+  }
+  
+  
 .swiper-slide-active {
     filter: blur(0px);
     background: #fff;
 }
 
-.testimonialBox {
-    position: relative;
-    width: 100%;
-    padding: 40px;
-    padding-top: 90px;
-    color: #999;
-}
 
-
-.testimonialBox .quote {
+.text__overlay {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    opacity: 0.2;
-    height: 40px;
-
-}
-
-.testimonialBox .details {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.testimonialBox .details .imgBx{
-    position: relative;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
-}
-
-.testimonialBox .details .imgBx img{
-    position: relative;
-    top: 0;
-    left: 0;
+    height: 90%;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.testimonialBox .details h3{
+    background-color: #1a1f2b;
+    color: white;
+    display: none;
+    text-align: center;
+    opacity: 0.9;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 1px;
-    color: #2196f3;
     line-height: 1.1em;
 }
 
-.testimonialBox .details h3 span{
-    font-size: 12px;
-    color: #666;
+.text__overlay h3 {
+    max-width: 15em;
 }
 
-.swiper-container-3d .swiper-slide-shadow-left,
-.swiper-container-3d .swiper-slide-shadow-right {
-    background-image: none;
-}
+.player:hover .text__overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+  
+        .player {
+            width: 350px;
+          }
+        
+      }
