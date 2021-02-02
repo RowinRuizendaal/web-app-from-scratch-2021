@@ -4,7 +4,7 @@ const fetchData = async (artist) => {
     const dataset = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist}`, {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "56c070c431msh87cecd16dfd06bep144257jsn65aaddc013a9",
+            "x-rapidapi-key": "",
             "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
         }
     })
