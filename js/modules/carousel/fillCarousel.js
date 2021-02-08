@@ -1,10 +1,20 @@
 import { fetchData } from '../api/fetch.js'
+import { checkStorage, setStorage } from '../localstorage/checkStorage.js'
+
+
+let data
 
 export async function carousel() {
-    const artist = 'michael jackson'
-    const json = await fetchData(artist);
-    const data = json.data
-    console.log(data)
+    const artist = 'frans'
+
+    if (checkStorage(artist)) {
+        data = JSON.parse(localStorage.getItem(`${artist}`))
+    } else {
+        const json = await fetchData(artist)
+        data = json.data
+        setStorage(artist, data)
+    }
+
 
     const container = document.querySelector('.swiper-wrapper')
     const results = document.querySelector('.results h3').textContent = `${data.length} results for ${artist}`
