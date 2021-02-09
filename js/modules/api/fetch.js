@@ -1,7 +1,7 @@
 //Fetch method
-export async function fetchData(artist) {
+export async function fetchData(endpoint1) {
     const baseUrl = 'https://deezerdevs-deezer.p.rapidapi.com/'
-    const endpoint = `search?q=${artist}`
+    const endpoint = endpoint1
 
     const dataset = await fetch(`${baseUrl}${endpoint}`, {
         "method": "GET",

@@ -1,3 +1,6 @@
-import { carousel } from './modules/carousel/fillCarousel.js'
+import { router } from './modules/router/router.js'
 
-carousel()
+router()
+
+
+

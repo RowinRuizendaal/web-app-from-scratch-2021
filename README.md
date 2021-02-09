@@ -1,5 +1,8 @@
 # Single page app - Check out your favorite songs from your favorite Artist!
 
+
+![image](https://raw.githubusercontent.com/RowinRuizendaal/web-app-from-scratch-2021/master/assets/documentation/home.jpg)
+
 ![image](https://raw.githubusercontent.com/RowinRuizendaal/web-app-from-scratch-2021/master/assets/documentation/teaser.png)
 
 
@@ -24,7 +27,7 @@ I made a single page app for music lovers in which I used the Rapid API (Deezer)
 
 What is an API? Application programming interfaces (APIs) helps to make data available for extern users. In this way, you can request data to use it in different applications.
 
-[The Rapid Deezer API](https://rapidapi.com/deezerdevs/api/deezer-1)The Rapid deezer API allows:
+[The Rapid Deezer API](https://rapidapi.com/deezerdevs/api/deezer-1):
 
     - Search on artist
     - Search on album.
