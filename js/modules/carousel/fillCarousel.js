@@ -18,7 +18,6 @@ export async function carousel(artist) {
     }
 
 
-<<<<<<< HEAD
     const container = document.querySelector('.app')
     container.className = 'swiper-section'
 
@@ -28,33 +27,19 @@ export async function carousel(artist) {
     let swiperwrapper = document.createElement('div')
     swiperwrapper.className = 'swiper-wrapper'
 
-    // let swiperslide = document.createElement('div')
-    // swiperslide.className = 'swiper-slide'
-
-
 
 
     const secondcontainer = container.appendChild(swipercontainer)
     const secondcontainer2 = swipercontainer.appendChild(swiperwrapper)
-    // const secondcontainer3 = swiperwrapper.appendChild(swiperslide)
 
 
     // const results = document.querySelector('.results h3').textContent = `${data.length} results for ${artist}`
-=======
-    const container = document.querySelector('.swiper-wrapper')
-    const results = document.querySelector('.results h3').textContent = `${data.length} results for ${artist}`
->>>>>>> 0e3a38c7521ab743abc6a3f9824c92796216f52a
 
 
     for (let i = 0; i < data.length; i++) {
 
-<<<<<<< HEAD
         secondcontainer2.innerHTML += 
         `   <div class="swiper-slide">
-=======
-        container.innerHTML += 
-        `<div class="swiper-slide">
->>>>>>> 0e3a38c7521ab743abc6a3f9824c92796216f52a
             <div class="player">
                 <div class="imgBx">
                 <img src="${data[i].album.cover_medium}" alt="${data[i].artist.name}">
@@ -68,31 +53,10 @@ export async function carousel(artist) {
                     <p>${data[i].artist.name}</p>
                 </div>
             </div>
-<<<<<<< HEAD
         </div>
         </div>
         </section>`
     }
-=======
-        </div>`
-    }
-
-    const swiper = new Swiper(".swiper-container", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2,
-            slideShadows: true
-        },
-        loop: true,
-    });
-}
->>>>>>> 0e3a38c7521ab743abc6a3f9824c92796216f52a
 
     const swiper = new Swiper(".swiper-container", {
         effect: "coverflow",

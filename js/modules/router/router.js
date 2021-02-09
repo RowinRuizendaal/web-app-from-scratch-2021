@@ -1,5 +1,6 @@
-import { carousel } from '../carousel/fillCarousel.js'
 import { genre } from '../genre/genre.js'
+import { carousel } from '../carousel/fillCarousel.js'
+
 
 export function router() {
     routie('', genre())
