@@ -27,7 +27,7 @@ like feature (?)
 
 
 
-## Actor diagram
+## Actor diagram 
 
 ![actor](https://raw.githubusercontent.com/RowinRuizendaal/web-app-from-scratch-2021/master/assets/documentation/Actor.png)
 
@@ -61,18 +61,22 @@ I couldn't find any information about the maxium request each hour/day, the API 
 ## How to fetch data from the Rapid Deezer API?
 
 ```js
-    const baseUrl = 'https://deezerdevs-deezer.p.rapidapi.com/'
-    const endpoint = `search?q=${artist}`
+import { config } from './config.js'
 
-    const dataset = await fetch(`${baseUrl}${endpoint}`, {
+//Fetch method
+export async function fetchData(endpoint1) {
+    const endpoint = endpoint1
+
+    const dataset = await fetch(`${config.baseUrl}${endpoint}`, {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "API_KEY",
-            "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+            "x-rapidapi-key": `${config.key}`,
+            "x-rapidapi-host": `${config.host}`
         }
     })
     const json = await dataset.json()
     return json
+}
 
 
 ```
