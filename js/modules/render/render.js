@@ -3,7 +3,7 @@ const fallbackImage = '../../../assets/images/fallback-cover.jpg'
 
 const render = {
     genre(json) {
-
+        console.log(typeof json)
         let childContainer = document.createElement('div')
         childContainer.className = 'container margin'
         const secondcontainer = container.appendChild(childContainer)
@@ -48,7 +48,8 @@ const render = {
         let backButton = document.createElement('a')
         backButton.className = 'go-back'
         backButton.appendChild(document.createTextNode("Go back"))
-        backButton.href = "/#overview";
+            // Bugged for now need a new solution
+        backButton.href = `${window.location.origin}/index.html#overview`;
 
         container.className = 'swiper-section'
 
@@ -63,32 +64,33 @@ const render = {
         const secondcontainer = container.appendChild(swipercontainer)
         const secondcontainer2 = swipercontainer.appendChild(swiperwrapper)
 
+        const dataIndex = data[0]
 
-
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < dataIndex.length; i++) {
 
             const overview =
                 `<div class="swiper-slide">
-            <div class="player">
-                <div class="imgBx">
-                <img src="${data[i].album.cover_medium}" alt="${data[i].artist.name}">
-                <audio controls>
-                <source src="${data[i].preview}" type="audio/mp3">
-                <source src="${data[i].preview}" type="audio/mpeg">
-                Your browser does not support the audio element.
-                </audio>
-                    <div class="text__overlay">
-                    <h3>${data[i].title}</h3>
-                    <p>${data[i].artist.name}</p>
+                    <div class="player">
+                        <div class="imgBx">
+                        <img src="${dataIndex[i].album.cover_medium}" alt="${dataIndex[i].artist.name}">
+                        <audio controls>
+                        <source src="${dataIndex[i].preview}" type="audio/mp3">
+                        <source src="${dataIndex[i].preview}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                        </audio>
+                            <div class="text__overlay">
+                            <h3>${dataIndex[i].title}</h3>
+                            <p>${dataIndex[i].artist.name}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        </div>
-        </section>`
+                </div>
+                </section>`
 
             secondcontainer2.insertAdjacentHTML('beforeend', overview)
-
         }
+
+
 
         const swiper = new Swiper(".swiper-container", {
             effect: "coverflow",

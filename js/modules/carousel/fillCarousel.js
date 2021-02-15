@@ -6,18 +6,20 @@ import { render } from '../render/render.js'
 
 
 export async function carousel(artist) {
-    let data
-    const searchArtist = artist
+    let data = []
 
     clearElement('.app')
-    
+
+
     if (checkStorage(artist)) {
-        data = JSON.parse(localStorage.getItem(`${searchArtist}`))
+        data = JSON.parse(localStorage.getItem(artist))
     } else {
-        const json = await fetchData(`search?q=${searchArtist}`)
-        data = json.data
-        setStorage(artist, data)
+        const json = await fetchData(`search?q=${artist}`)
+        data.push(json.data)
+
+
     }
 
+    setStorage(artist, data)
     render.carousel(data)
 }

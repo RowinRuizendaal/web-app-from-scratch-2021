@@ -20,7 +20,7 @@ export async function genre() {
             data.push(json)
         }
     }
-     setStorage('overview', data)
-     render.genre(data)
-    
+    setStorage('overview', data)
+    render.genre(data)
+
 }
