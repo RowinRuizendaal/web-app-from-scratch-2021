@@ -1,27 +1,22 @@
 const container = document.querySelector('.app')
-const fallbackImage = '../../../assets/images/fallback-cover.jpg'
 
 const render = {
     genre(json) {
-        console.log(typeof json)
+
         let childContainer = document.createElement('div')
         childContainer.className = 'container margin'
-        const secondcontainer = container.appendChild(childContainer)
+        container.appendChild(childContainer)
+
+        // let childContainer = document.createElement('div')
+        // const secondcontainer = container.appendChild(childContainer)
 
 
+        // GENRE FIXING
 
         for (let i of json) {
-            // todo 
-            if (i.name === undefined) {
-                console.log(typeof json)
-                    // json.splice(i, i)
-            }
 
-            if (i.picture_medium === undefined) {
-                i.picture_medium = fallbackImage
-            }
-
-            const overview = `
+            if (i.name != undefined) {
+                const overview = `
             <div class="container">
             <a href='#artist/${i.name}'
             <div class="container">
@@ -40,18 +35,19 @@ const render = {
             </div>
             </section>`
 
-            childContainer.insertAdjacentHTML('beforeend', overview)
+                childContainer.insertAdjacentHTML('beforeend', overview)
+            }
         }
     },
     carousel(data) {
 
+
         let backButton = document.createElement('a')
         backButton.className = 'go-back'
         backButton.appendChild(document.createTextNode("Go back"))
-            // Bugged for now need a new solution
-        backButton.href = `${window.location.origin}/index.html#overview`;
+        backButton.href = `#overview`;
 
-        container.className = 'swiper-section'
+        container.className = 'app swiper-section'
 
         let swipercontainer = document.createElement('div')
         swipercontainer.className = 'swiper-container'

@@ -1,8 +1,7 @@
 import { config } from './config.js'
 
 //Fetch method
-export async function fetchData(endpoint1) {
-    const endpoint = endpoint1
+export async function fetchData(endpoint) {
 
     const dataset = await fetch(`${config.baseUrl}${endpoint}`, {
         "method": "GET",
