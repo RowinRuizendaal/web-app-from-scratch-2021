@@ -12,59 +12,56 @@ export async function genre(input) {
     const number = 1
     const max = 27
     let data = new Array
+    let json
 
-
-    let overviewStorage = checkStorage('overview')
+    let overviewStorage = checkStorage('search')
 
     clearElement('.app')
     loader('.app')
 
     // If input prompt has been filled in
     if (input) {
-        for (let i = 0; i < JSON.parse(overviewStorage).length; i++) {
 
+        if (checkStorage('search')) {
+        for (let i = 0; i < JSON.parse(overviewStorage).length; i++) {
 
             if (JSON.parse(overviewStorage)[i].name === input) {
                 data.push(JSON.parse(overviewStorage)[i])
                 return render.genre(data)
             }
         }
+    }
 
 
-        const json = await fetchData(`search?q=${input}`)
-            // data.push(json)
+        const json = await fetchData((`search?q=${input}`))
 
-        for (let i = 0; i < json.length; i++) {
-            data.push(json[i])
-        }
-        // data = json.data.map((el) => {
-        //     return el
-        // })
-
-        // json.data.map((el) => {
-        //     return {
-        //         id: el.artist.id,
-        //         name: el.artist.name,
-        //         picture_medium: el.artist.picture_medium,
-        //         type: el.type
-
-        //     }
-        // })
+        json.data.map((el) => {
+            return el
+        })
 
         if (json) {
             removeElement('.loader')
         }
+
 
         // https://gomakethings.com/how-to-update-localstorage-with-vanilla-javascript/
 
         // If no existing data, create an object
         // Otherwise, convert the localStorage string to an array
         overviewStorage = overviewStorage ? JSON.parse(overviewStorage) : {}
-        overviewStorage.push(data)
 
-
+        const formatData = json.data.map((el) => {
+            let res = {
+              id: el.artist.id,
+              name: el.artist.name, 
+              picture_medium: el.artist.picture_medium,
+              type: el.type
+            }
+            return data.push(res)
+        });
+        
         // Save back to localstorage
-        setStorage('overview', overviewStorage)
+        setStorage('search', overviewStorage)
 
 
         return render.genre(data)
@@ -76,7 +73,7 @@ export async function genre(input) {
         removeElement('.loader')
     } else {
         for (let i = number; i < max; i++) {
-            const json = await fetchData(`/artist/${i}`)
+            json = await fetchData(`/artist/${i}`)
             data.push(json)
         }
 

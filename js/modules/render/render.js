@@ -10,7 +10,7 @@ let timeout = null;
 const container = document.querySelector('.app')
 
 const render = {
-    genre(json) {
+    genre(json, structure) {
 
         const heading = createElement('h2', 'overview-header')
         heading.innerHTML = 'Featured artists'
@@ -33,7 +33,7 @@ const render = {
         heading.appendChild(search)
         container.appendChild(childContainer)
 
-
+        console.log(json)
         for (let i of json) {
             if (i.name != null || i.name != undefined) {
                 const overview = `
