@@ -7,18 +7,19 @@ import { loader } from '../loader/loader.js'
 
 
 export async function carousel(artist) {
-    let data = []
+    let dataset = new Array;
 
     clearElement('.app')
     loader('.app')
 
-    console.log(artist)
 
     if (checkStorage(artist)) {
-        data = JSON.parse(localStorage.getItem(artist))
+        dataset = JSON.parse(localStorage.getItem(artist))
     } else {
         const json = await fetchData(`search?q=${artist}`)
-        data.push(json.data)
+        dataset = json.data.map((el) => {
+            return el
+        })
 
         if (json) {
             clearElement('.loader')
@@ -26,7 +27,7 @@ export async function carousel(artist) {
     }
 
 
-    setStorage(artist, data)
-    render.carousel(data)
+    setStorage(artist, dataset)
+    render.carousel(dataset)
 
 }

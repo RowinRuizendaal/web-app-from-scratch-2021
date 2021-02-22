@@ -1,21 +1,41 @@
+import {
+    createElement
+} from '../createElements/createElements.js'
+
+
+import { genre } from '../genre/genre.js'
+
+// Global scope
+let timeout = null;
 const container = document.querySelector('.app')
 
 const render = {
     genre(json) {
 
-        let childContainer = document.createElement('div')
-        childContainer.className = 'container margin'
+        const heading = createElement('h2', 'overview-header')
+        heading.innerHTML = 'Featured artists'
+
+        // Make the search field as input
+        const search = createElement('input', 'input')
+
+        // Set an event on search with a timeout
+        search.addEventListener('keyup', function(e) {
+            e.preventDefault();
+
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                genre(search.value)
+            }, 1000);
+        })
+        const childContainer = createElement('div', 'container margin')
+
+        container.appendChild(heading)
+        heading.appendChild(search)
         container.appendChild(childContainer)
 
-        // let childContainer = document.createElement('div')
-        // const secondcontainer = container.appendChild(childContainer)
-
-
-        // GENRE FIXING
 
         for (let i of json) {
-
-            if (i.name != undefined) {
+            if (i.name != null || i.name != undefined) {
                 const overview = `
             <div class="container">
             <a href='#artist/${i.name}'
@@ -41,52 +61,51 @@ const render = {
     },
     carousel(data) {
 
+        // Change container name for swiper functionality
+        container.className = 'app swiper-section'
 
-        let backButton = document.createElement('a')
-        backButton.className = 'go-back'
+        // create the back button within the section
+        let backButton = createElement('a', 'go-back')
         backButton.appendChild(document.createTextNode("Go back"))
         backButton.href = `#overview`;
 
-        container.className = 'app swiper-section'
+        // Make div
+        let swipercontainer = createElement('div', 'swiper-container')
 
-        let swipercontainer = document.createElement('div')
-        swipercontainer.className = 'swiper-container'
+        // Make div
+        let swiperwrapper = createElement('div', 'swiper-wrapper')
 
-        let swiperwrapper = document.createElement('div')
-        swiperwrapper.className = 'swiper-wrapper'
-
-
+        // Append the backbutton
         container.appendChild(backButton)
-        const secondcontainer = container.appendChild(swipercontainer)
-        const secondcontainer2 = swipercontainer.appendChild(swiperwrapper)
 
-        const dataIndex = data[0]
+        //append the swiper container
+        container.appendChild(swipercontainer)
 
-        for (let i = 0; i < dataIndex.length; i++) {
+        // Child container for swiperwrapper
+        const childContainerWrapper = swipercontainer.appendChild(swiperwrapper)
 
+        for (let i of data) {
             const overview =
                 `<div class="swiper-slide">
-                    <div class="player">
-                        <div class="imgBx">
-                        <img src="${dataIndex[i].album.cover_medium}" alt="${dataIndex[i].artist.name}">
-                        <audio controls>
-                        <source src="${dataIndex[i].preview}" type="audio/mp3">
-                        <source src="${dataIndex[i].preview}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                        </audio>
-                            <div class="text__overlay">
-                            <h3>${dataIndex[i].title}</h3>
-                            <p>${dataIndex[i].artist.name}</p>
-                        </div>
+                <div class="player">
+                    <div class="imgBx">
+                    <img src="${i.album.cover_medium}" alt="${i.artist.name}">
+                    <audio controls>
+                    <source src="${i.preview}" type="audio/mp3">
+                    <source src="${i.preview}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio>
+                        <div class="text__overlay">
+                        <h3>${i.title}</h3>
+                        <p>${i.artist.name}</p>
                     </div>
                 </div>
-                </div>
-                </section>`
+            </div>
+            </div>
+            </section>`
 
-            secondcontainer2.insertAdjacentHTML('beforeend', overview)
+            childContainerWrapper.insertAdjacentHTML('beforeend', overview)
         }
-
-
 
         const swiper = new Swiper(".swiper-container", {
             effect: "coverflow",

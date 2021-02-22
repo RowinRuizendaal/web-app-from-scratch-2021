@@ -1,8 +1,9 @@
+import { createElement } from '../createElements/createElements.js'
+
 export function loader(element) {
     const container = document.querySelector(element)
 
-    let childContainer = document.createElement('div')
-    childContainer.className = 'loader'
+    let childContainer = createElement('div', 'loader')
     container.appendChild(childContainer)
 
     const svg = `<?xml version="1.0" encoding="utf-8"?>

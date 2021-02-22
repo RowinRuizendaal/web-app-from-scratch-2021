@@ -288,6 +288,10 @@ header .navigation li a {
     background: var(--backgroundColor);
 }
 
+#overview {
+    position: relative;
+}
+
 .container {
     position: relative;
     display: flex;
@@ -383,8 +387,19 @@ header .navigation li a {
     transition-delay: 0.5s;
 }
 
+.overview-header {
+    position: absolute;
+    top: 0;
+    color: var(--wit);
+    font-size: 4em;
+    font-weight: 400;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin-bottom: 5rem;
+}
+
 .margin {
-    margin-top: 50px;
+    margin-top: 6.5rem;
 }
 
 .go-back {
@@ -484,6 +499,14 @@ header .navigation li a {
         background-size: 30px;
         background-repeat: no-repeat;
         background-position: center;
+    }
+    .margin {
+        margin-top: 10rem;
+    }
+    .overview-header {
+        text-align: center;
+        font-size: 4em;
+        font-weight: 400;
     }
 }
 
