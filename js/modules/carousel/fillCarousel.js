@@ -1,6 +1,6 @@
 import { fetchData } from '../api/fetch.js'
-import { checkStorage, setStorage } from '../localstorage/checkStorage.js'
-import { clearElement } from '../clearElement/clearElement.js'
+import { checkStorage, setStorage } from '../utils/localstorage.js'
+import { clearElement } from '../utils/clearElement.js'
 import { render } from '../render/render.js'
 import { loader } from '../loader/loader.js'
 

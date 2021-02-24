@@ -1,17 +1,14 @@
 export function createElement(type, className) {
 
     let create = document.createElement(type)
-
-    if (className === '') {
-        create.className = ''
-    } else {
-        create.className = className
-    }
+    create.className = className
 
     if (type === 'input') {
+        const label = createElement('label')
         create.setAttribute('type', 'text')
-    }
 
+        label.appendChild(create)
+    }
 
     return create
 }

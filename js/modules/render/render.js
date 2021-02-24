@@ -1,6 +1,6 @@
 import {
     createElement
-} from '../createElements/createElements.js'
+} from '../utils/createElements.js'
 
 
 import { genre } from '../genre/genre.js'
@@ -10,30 +10,40 @@ let timeout = null;
 const container = document.querySelector('.app')
 
 const render = {
-    genre(json, structure) {
+    genre(json) {
+
+        const absolutediv = createElement('div', 'absolutediv')
 
         const heading = createElement('h2', 'overview-header')
         heading.innerHTML = 'Featured artists'
 
         // Make the search field as input
-        const search = createElement('input', 'input')
+        const form = createElement('form', 'form')
+        const label = createElement('label', 'label')
+        const input = createElement('input', 'input')
+        input.placeholder = 'Search on any artist of your choice'
+
+
 
         // Set an event on search with a timeout
-        search.addEventListener('keyup', function(e) {
+        input.addEventListener('keyup', function(e) {
             e.preventDefault();
 
             clearTimeout(timeout);
             timeout = setTimeout(function() {
-                genre(search.value)
+                genre(input.value)
             }, 1000);
         })
         const childContainer = createElement('div', 'container margin')
 
-        container.appendChild(heading)
-        heading.appendChild(search)
+        container.appendChild(absolutediv)
+        absolutediv.appendChild(heading)
         container.appendChild(childContainer)
+        absolutediv.appendChild(form)
+        form.appendChild(label)
+        label.appendChild(input)
 
-        console.log(json)
+
         for (let i of json) {
             if (i.name != null || i.name != undefined) {
                 const overview = `

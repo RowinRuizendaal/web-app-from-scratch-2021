@@ -1,9 +1,12 @@
 import { fetchData } from '../api/fetch.js'
 import { render } from '../render/render.js'
-import { clearElement } from '../clearElement/clearElement.js'
-import { checkStorage, setStorage } from '../localstorage/checkStorage.js'
+import { clearElement } from '../utils/clearElement.js'
+import { checkStorage, setStorage } from '../utils/localstorage.js'
 import { loader } from '../loader/loader.js'
-import { removeElement } from '../clearElement/clearElement.js'
+import { removeElement } from '../utils/clearElement.js'
+import { formatData } from '../utils/formatData.js'
+import { filterArray } from '../utils/FilterArray.js'
+
 
 
 
@@ -12,9 +15,8 @@ export async function genre(input) {
     const number = 1
     const max = 27
     let data = new Array
-    let json
 
-    let overviewStorage = checkStorage('search')
+
 
     clearElement('.app')
     loader('.app')
@@ -22,15 +24,12 @@ export async function genre(input) {
     // If input prompt has been filled in
     if (input) {
 
-        if (checkStorage('search')) {
-        for (let i = 0; i < JSON.parse(overviewStorage).length; i++) {
-
-            if (JSON.parse(overviewStorage)[i].name === input) {
-                data.push(JSON.parse(overviewStorage)[i])
-                return render.genre(data)
-            }
+        if (checkStorage(`search${input.toLowerCase()}`)) {
+            console.log('bestaat')
+            data = JSON.parse(localStorage.getItem(`search${input.toLowerCase()}`))
+            removeElement('.loader')
+            return render.genre(data)
         }
-    }
 
 
         const json = await fetchData((`search?q=${input}`))
@@ -44,30 +43,20 @@ export async function genre(input) {
         }
 
 
-        // https://gomakethings.com/how-to-update-localstorage-with-vanilla-javascript/
-
-        // If no existing data, create an object
-        // Otherwise, convert the localStorage string to an array
-        overviewStorage = overviewStorage ? JSON.parse(overviewStorage) : {}
-
-        const formatData = json.data.map((el) => {
-            let res = {
-              id: el.artist.id,
-              name: el.artist.name, 
-              picture_medium: el.artist.picture_medium,
-              type: el.type
-            }
-            return data.push(res)
-        });
-        
-        // Save back to localstorage
-        setStorage('search', overviewStorage)
+        const formatStructure = formatData(json.data)
+        const uniqueArray = filterArray(formatStructure)
 
 
-        return render.genre(data)
+        setStorage(`search${input.toLowerCase()}`, uniqueArray)
+            // Set storage overview to the last known search
+        setStorage('overview', uniqueArray)
+
+
+        return render.genre(uniqueArray)
     }
+    // END OF INPUT
 
-
+    // Else check if
     if (checkStorage('overview')) {
         data = JSON.parse(localStorage.getItem('overview'))
         removeElement('.loader')
