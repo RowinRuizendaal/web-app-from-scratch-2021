@@ -24,13 +24,12 @@ const render = {
         input.placeholder = 'Search on any artist of your choice'
 
 
-
         // Set an event on search with a timeout
-        input.addEventListener('keyup', function(e) {
+        input.addEventListener('keyup', (e) => {
             e.preventDefault();
 
             clearTimeout(timeout);
-            timeout = setTimeout(function() {
+            timeout = setTimeout(() => {
                 genre(input.value)
             }, 1000);
         })
@@ -47,7 +46,7 @@ const render = {
         for (let i of json) {
             if (i.name != null || i.name != undefined) {
                 const overview = `
-            <div class="container">
+            <article class="container">
             <a href='#artist/${i.name}'
             <div class="container">
             <div class="box">
@@ -62,7 +61,7 @@ const render = {
               </div>
             </div>
             </a>
-            </div>
+            </article>
             </section>`
 
                 childContainer.insertAdjacentHTML('beforeend', overview)
@@ -96,7 +95,7 @@ const render = {
 
         for (let i of data) {
             const overview =
-                `<div class="swiper-slide">
+                `<article class="swiper-slide">
                 <div class="player">
                     <div class="imgBx">
                     <img src="${i.album.cover_medium}" alt="${i.artist.name}">
@@ -111,7 +110,7 @@ const render = {
                     </div>
                 </div>
             </div>
-            </div>
+            </article>
             </section>`
 
             childContainerWrapper.insertAdjacentHTML('beforeend', overview)

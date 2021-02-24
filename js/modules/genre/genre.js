@@ -25,9 +25,10 @@ export async function genre(input) {
     // If input prompt has been filled in
     if (input) {
 
-        if (checkStorage(`search${input.toLowerCase()}`)) {
-            console.log('bestaat')
-            data = JSON.parse(localStorage.getItem(`search${input.toLowerCase()}`))
+        const lowercase = input.toLowerCase()
+
+        if (checkStorage(`search${lowercase}`)) {
+            data = JSON.parse(localStorage.getItem(`search${lowercase}`))
             removeElement('.loader')
             return render.genre(data)
         }
@@ -48,17 +49,15 @@ export async function genre(input) {
         const uniqueArray = filterArray(formatStructure)
 
 
-        setStorage(`search${input.toLowerCase()}`, uniqueArray)
+        setStorage(`search${lowercase}`, uniqueArray)
             // Set storage overview to the last known search
         setStorage('overview', uniqueArray)
-
 
         return render.genre(uniqueArray)
     }
     // END OF INPUT
 
-    console.log('geen input')
-        // Else check if
+    // Else check if
     if (checkStorage('overview')) {
         data = JSON.parse(localStorage.getItem('overview'))
         removeElement('.loader')

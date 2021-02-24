@@ -1,6 +1,6 @@
 import { fetchData } from '../api/fetch.js'
 import { checkStorage, setStorage } from '../utils/localstorage.js'
-import { clearElement } from '../utils/clearElement.js'
+import { clearElement, removeElement } from '../utils/clearElement.js'
 import { render } from '../render/render.js'
 import { loader } from '../loader/loader.js'
 
@@ -15,6 +15,7 @@ export async function carousel(artist) {
 
     if (checkStorage(artist)) {
         dataset = JSON.parse(localStorage.getItem(artist))
+        removeElement('.loader')
     } else {
         const json = await fetchData(`search?q=${artist}`)
         dataset = json.data.map((el) => {
@@ -22,7 +23,7 @@ export async function carousel(artist) {
         })
 
         if (json) {
-            clearElement('.loader')
+            removeElement('.loader')
         }
     }
 

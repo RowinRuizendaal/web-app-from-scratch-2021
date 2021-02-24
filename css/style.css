@@ -306,6 +306,7 @@ header .navigation li a {
     overflow: hidden;
     transition: 0.5s;
     margin: 0px 0px 5px 5px;
+    border-radius: 5px;
 }
 
 .container .box:hover {
@@ -387,18 +388,6 @@ header .navigation li a {
     transition-delay: 0.5s;
 }
 
-
-/* .overview-header {
-    position: absolute;
-    top: 0;
-    color: var(--wit);
-    font-size: 4em;
-    font-weight: 400;
-    line-height: 1em;
-    text-transform: uppercase;
-    margin-bottom: 5rem;
-} */
-
 .absolutediv {
     position: absolute;
     top: 0;
@@ -412,12 +401,33 @@ header .navigation li a {
     text-transform: uppercase;
 }
 
-input[type=text] {
+input[type='text'] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     text-align: center;
+    background-color: var(--backgroundColor);
+    color: white;
+    border: 1px solid var(--red);
+    box-shadow: 0 3px 3px -2px var(--backgroundColor), 0 3px 4px 0 var(--backgroundColor), 0 1px 8px 0 var(--backgroundColor), 0 1rem 1rem -.8rem var(--red);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+}
+
+::placeholder {
+    color: white;
+    opacity: 0.9;
+}
+
+input[type=text]:focus::placeholder {
+    color: transparent;
+}
+
+input[type=text]:focus {
+    outline: none;
 }
 
 .margin {
@@ -426,7 +436,7 @@ input[type=text] {
 
 .go-back {
     position: absolute;
-    top: 5vh;
+    top: 3vh;
     left: 5vw;
     text-decoration: none;
     color: white;
@@ -445,10 +455,12 @@ input[type=text] {
     margin: 3rem auto 20px;
     color: #000;
     width: auto;
-    background-color: #00a994;
+    background-color: var(--red);
     color: #fff;
     border: none;
     height: 5vh;
+    box-shadow: 0 3px 3px -2px var(--backgroundColor), 0 3px 4px 0 var(--backgroundColor), 0 1px 8px 0 var(--backgroundColor), 0 1rem 1rem -.8rem var(--red);
+    border-radius: 5px;
 }
 
 .loader {
@@ -536,6 +548,9 @@ input[type=text] {
     }
     input[type=text] {
         width: 80%;
+    }
+    .absolutediv {
+        padding: 0rem;
     }
 }
 
