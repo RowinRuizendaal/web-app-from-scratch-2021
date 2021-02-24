@@ -473,6 +473,31 @@ input[type=text]:focus {
     min-height: 70vh;
 }
 
+footer {
+    background-color: var(--backgroundColor);
+    color: var(--wit);
+    text-align: center;
+}
+
+footer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer div p {
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+footer div a {
+    all: unset;
+    color: var(--red);
+    cursor: pointer;
+    text-decoration: none;
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .player {
         width: 350px;
