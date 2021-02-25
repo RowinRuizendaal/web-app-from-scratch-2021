@@ -1,7 +1,7 @@
 const config = {
     baseUrl: 'https://deezerdevs-deezer.p.rapidapi.com/',
     host: 'deezerdevs-deezer.p.rapidapi.com',
-    key: '66168eeaa8mshbc81e99f4a7223bp1b5006jsnb1fcc63e0d2e',
+    key: 'cf73d8d0cbmshe8acfcdef0c3d5bp16836bjsn241cef660917',
     corsAnywhere: 'https://cors-anywhere.herokuapp.com/'
 }
 
