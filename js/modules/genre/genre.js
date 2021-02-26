@@ -34,7 +34,7 @@ export async function genre(input) {
         }
 
 
-        const json = await fetchData((`search?q=${input}`))
+        const json = await fetchData(`search?q=${input}`)
 
         json.data.map((el) => {
             return el
