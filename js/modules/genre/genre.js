@@ -13,7 +13,7 @@ import { filterArray } from '../utils/FilterArray.js'
 export async function genre(input) {
 
     const number = 1
-    const max = 27
+    const max = 7
     let data = new Array
     let json
 
