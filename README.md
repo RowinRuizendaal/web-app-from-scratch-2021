@@ -33,7 +33,55 @@ like feature (?)
 
 ## Interaction diagram
 
-![actor](https://raw.githubusercontent.com/RowinRuizendaal/web-app-from-scratch-2021/master/assets/documentation/Interaction.png)
+![actor](https://raw.githubusercontent.com/RowinRuizendaal/web-app-from-scratch-2021/master/assets/documentation/Interaction-diagram.png)
+
+
+## Data transform
+
+[Genre.js](https://github.com/RowinRuizendaal/web-app-from-scratch-2021/blob/master/js/modules/genre/genre.js#L48-L49)
+
+```js
+import { formatData } from '../utils/formatData.js'
+import { filterArray } from '../utils/FilterArray.js'
+
+
+const formatStructure = formatData(json.data)
+const uniqueArray = filterArray(formatStructure)
+
+```
+
+[FormatData.js](https://github.com/RowinRuizendaal/web-app-from-scratch-2021/blob/master/js/modules/utils/formatData.js)
+```js
+export function formatData(array) {
+
+    return array.map((el) => {
+        return {
+            id: el.artist.id,
+            name: el.artist.name,
+            picture_medium: el.artist.picture_medium,
+            type: el.type
+        }
+    })
+}
+```
+
+[FilterArray.js](https://github.com/RowinRuizendaal/web-app-from-scratch-2021/blob/master/js/modules/utils/FilterArray.js)
+
+
+```js
+export function filterArray(array) {
+
+    const unique = array.reduce((acc, current) => {
+        const x = acc.find(item => item.id === current.id);
+        if (!x) {
+            return acc.concat([current]);
+        } else {
+            return acc;
+        }
+    }, []);
+    return unique
+}
+```
 
 
 ## What is the Rapid deezer API?
