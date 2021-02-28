@@ -13,7 +13,7 @@ import { filterArray } from '../utils/FilterArray.js'
 export async function genre(input) {
 
     const number = 1
-    const max = 27
+    const max = 7
     let data = new Array
     let json
 
@@ -34,7 +34,7 @@ export async function genre(input) {
         }
 
 
-        const json = await fetchData((`search?q=${input}`))
+        const json = await fetchData(`search?q=${input}`)
 
         json.data.map((el) => {
             return el
