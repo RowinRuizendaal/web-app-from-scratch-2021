@@ -6,6 +6,7 @@ import { loader } from '../loader/loader.js'
 import { removeElement } from '../utils/clearElement.js'
 import { formatData } from '../utils/formatData.js'
 import { filterArray } from '../utils/FilterArray.js'
+import { error } from '../utils/error.js'
 
 
 
@@ -36,9 +37,15 @@ export async function genre(input) {
 
         const json = await fetchData(`search?q=${input}`)
 
+        if (json.error) {
+            return error()
+        }
+
         json.data.map((el) => {
             return el
         })
+
+
 
         if (json) {
             removeElement('.loader')
@@ -63,8 +70,14 @@ export async function genre(input) {
         removeElement('.loader')
     } else {
         for (let i = number; i < max; i++) {
-            json = await fetchData(`/artist/${i}`)
-            data.push(json)
+            json = await fetchData(`artist/${i}`)
+            if (typeof json === 'object') {
+                data.push(json)
+            } else {
+                data = await json.map((el) => {
+                    return el
+                })
+            }
         }
 
         if (json) {

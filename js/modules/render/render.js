@@ -69,7 +69,6 @@ const render = {
         }
     },
     carousel(data) {
-
         // Change container name for swiper functionality
         container.className = 'app swiper-section'
 
