@@ -16,13 +16,21 @@ I made a single page app for music lovers in which I used the Rapid API (Deezer)
 
 ## What can you do with this web app?
 
-For now the meaning of this webapp is that you can pick any highlighted artist, after you find an artisist of your choice you can see their songs in a carousel, discovering new songs that you might never heared from your favorite artist. (discoverability)
+Ever had that moment where you like a song of any artist but you dont know any other songs from that artist? With this tool you can search on any artist and view all their music previews within just a 2 steps.
+
+Fill in their artist name,
+
+Click on the desired artist
+
+All their songs are within one simple overview carousel
+
 
 
 ## What does this app need to be a perfect app from now on?
 
-Maybe a search field where people can search on their favorite artist instead of having the choise from a few,
-like feature (?)
+Like feature to save any songs from your favorite artist,
+
+Better API connection with limitless calls
 
 
 
